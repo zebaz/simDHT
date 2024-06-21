@@ -23,12 +23,12 @@ TOKEN_LENGTH = 2
 
 
 def entropy(length):
-    return "".join(chr(randint(0, 255)) for _ in xrange(length))
+    return "".join(chr(randint(0, 255)) for _ in range(length))
 
 
 def random_id():
     h = sha1()
-    h.update(entropy(20))
+    h.update(entropy(20).encode('utf-8'))
     return h.digest()
 
 
@@ -234,9 +234,9 @@ class DHTServer(DHTClient):
 class Master(object):
 
     def log(self, infohash, address=None):
-        print "%s from %s:%s" % (
+        print("%s from %s:%s" % (
             infohash.encode("hex"), address[0], address[1]
-        )
+        ))
 
 
 # using example
